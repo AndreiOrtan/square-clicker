@@ -1,9 +1,24 @@
 const path = require('path');
 
 module.exports = {
-    entry: './src/index.js',
+  mode: "development",
+    entry: './index.js',
     output: {
       filename: 'main.js',
       path: path.resolve(__dirname, 'dist'),
     },
+    devServer: {
+      static:{
+        directory: path.resolve(__dirname, "dist"),
+      },
+      port: 3400,
+    },
+    module:{
+    rules: [
+      {
+        test: /\.css$/i,
+        use: ["style-loader", "css-loader"],
+      },
+    ],
+  }
   };
