@@ -1,8 +1,10 @@
-.square{
-    width: 200px;
-    height: 200px;
-    
+.square {
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  top: 100px;
+  /* left: 100px; */
 }
-.vision{
-    display:none
+.vision {
+  display: none;
 }
