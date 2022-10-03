@@ -15,8 +15,8 @@ function blockGenerator() {
   elem.className = "square";
   elem.style.backgroundColor = getRandomColor();
 
-  let randomTop = getRandomNumber(0, winHeight);
-  let randomLeft = getRandomNumber(0, winWidth);
+  let randomTop = getRandomNumber(0, winHeight - 200);
+  let randomLeft = getRandomNumber(0, winWidth - 200);
 
   elem.style.top = randomTop + "px";
   elem.style.left = randomLeft + "px";
@@ -36,7 +36,19 @@ elem.addEventListener("click", (e) => {
     clickedTime = new Date();
   }
   const time = Math.floor(Math.random() * 5500);
+  const miliSec = clickedTime - startTime;
+  const seconds = Math.floor(miliSec / 1000);
+  const minutes = Math.floor(seconds / 60);
 
-  score.textContent = clickedTime - startTime;
+  if (miliSec < 1000) {
+    score.textContent = miliSec + "ms";
+  } else if (seconds < 60) {
+    score.textContent = `${seconds}sec ${miliSec - seconds * 1000}ms`;
+  } else if (seconds > 60) {
+    score.textContent = `${minutes}min ${seconds - minutes * 60}sec ${
+      miliSec - seconds * 1000
+    }ms`;
+  }
+
   setTimeout(blockGenerator, time);
 });
